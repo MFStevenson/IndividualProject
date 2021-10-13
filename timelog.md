@@ -21,3 +21,19 @@
 ### 29 Sept 2021
 
 * *0.5 hour* Created GitHub repository and set up for python development
+
+
+## Week 3
+
+###  5 Oct 2021
+* *1 hour* Background reading about IR
+* *1 hour* Revision of statistics
+
+## Week 4
+
+### 11 Oct 2021
+* *2 hours* Further reading about IR, looking into python data science
+
+### 13th Oct 2021
+* *2 hours* Writing up some notes and organising files for meetings
+ 
