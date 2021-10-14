@@ -36,4 +36,8 @@
 
 ### 13th Oct 2021
 * *2 hours* Writing up some notes and organising files for meetings
+
+### 14th Oct 2021
+* *1 hour* Researching different tools to use
+* *2 hours* Trying to come up with requirements and user stories for the system
  
