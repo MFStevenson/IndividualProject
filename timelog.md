@@ -40,4 +40,16 @@
 ### 14th Oct 2021
 * *1 hour* Researching different tools to use
 * *2 hours* Trying to come up with requirements and user stories for the system
+
+## Week 5
+
+### 19th Oct 2021
+* *0.5 hour* Reading about stats tests and metrics used in offline scenario
+* *0.5 hour* Collating research about reading concerning test evaluation
+ 
+ ### 20th Oct 2021
+ * *1 hour* Looking at pyterrier tutorials
+
+ ### 21st Oct 2021
+ * *0.5 hour* pyterrier tutorial, feel confused
  
