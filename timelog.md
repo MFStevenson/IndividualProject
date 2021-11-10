@@ -68,4 +68,10 @@
 ### 4th Nov 2021
 * *1.5 hours* Creating Wireframes
 
+## Week 8
+
+### 10th Nov 2021
+* *0.5 hours* Setting up pybuilder project
+* *2 hours* Starting to code end to end app
+
  

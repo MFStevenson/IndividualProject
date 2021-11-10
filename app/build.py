@@ -14,4 +14,6 @@ default_task = "publish"
 
 @init
 def set_properties(project):
-    pass
+    # temporary for now, allows project to be build without any tests
+    project.set_property('coverage_break_build', False)
+
