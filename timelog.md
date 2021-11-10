@@ -47,9 +47,25 @@
 * *0.5 hour* Reading about stats tests and metrics used in offline scenario
 * *0.5 hour* Collating research about reading concerning test evaluation
  
- ### 20th Oct 2021
+
+### 20th Oct 2021
  * *1 hour* Looking at pyterrier tutorials
 
- ### 21st Oct 2021
+### 21st Oct 2021
  * *0.5 hour* pyterrier tutorial, feel confused
+
+## Week 6
+
+### 28th Oct 2021
+* *1 hour* Conceptualising user stories and writing requirements
+* *0.5 hours* Researching data flow diagrams, how to draw
+
+### 29th Oct 2021
+* *1.5 hours* Conceptualising data flow and drawing data flow diagram
+
+## Week 7
+
+### 4th Nov 2021
+* *1.5 hours* Creating Wireframes
+
  
