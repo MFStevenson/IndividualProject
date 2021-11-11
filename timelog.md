@@ -72,6 +72,11 @@
 
 ### 10th Nov 2021
 * *0.5 hours* Setting up pybuilder project
-* *2 hours* Starting to code end to end app
+* *3 hours* Setting up files to work out what will be needed for complete end to end app
+
+### 11th Nov 2021
+* *1 hour* Using Jupyter to test if my code is working, think I will need to change from scipy to scikit-learn
+* *0.5 hours* Looking at how to create output, html to pdf
+* *2 hour* coding app
 
  

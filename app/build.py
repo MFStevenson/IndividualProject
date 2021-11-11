@@ -13,6 +13,10 @@ default_task = "publish"
 
 
 @init
+def initalize(project):
+    project.depends_on('flask')
+
+@init
 def set_properties(project):
     # temporary for now, allows project to be build without any tests
     project.set_property('coverage_break_build', False)
