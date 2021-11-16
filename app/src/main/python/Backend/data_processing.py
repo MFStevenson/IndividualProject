@@ -24,9 +24,11 @@ dat = read_data('test_data.csv')
 test_dat = test_data(dat)
 
 visualisation = regression_plt(test_dat)
-stats_result = regression(test_dat)
-descriptives = stats_result['d']
-inferential = stats_result['i']
+stats = regression(test_dat)
+descriptives = stats['d']
+inferential = stats['i']
 
-d.to_csv("descriptive")
-i.to_csv("inferential")
+# d = stats['d']
+# i = stats["i"]
+# d.to_csv("descriptive.csv", index = False)
+# i.to_csv("inferential.csv", index = False)

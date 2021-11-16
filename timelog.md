@@ -77,6 +77,16 @@
 ### 11th Nov 2021
 * *1 hour* Using Jupyter to test if my code is working, think I will need to change from scipy to scikit-learn
 * *0.5 hours* Looking at how to create output, html to pdf
-* *2 hour* coding app
+* *3 hours* coding app
+
+### 12 Nov 2021
+* *0.5 hours* Redrawing some wireframes
+
+## Week 9
+
+### 16 Nov 2021
+* *0.5 hours* setting up Flask to display page
+* *2 hours* reading up on flask and trying to work out what I'm doing
+
 
  
