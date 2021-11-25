@@ -88,5 +88,18 @@
 * *0.5 hours* setting up Flask to display page
 * *2 hours* reading up on flask and trying to work out what I'm doing
 
+### 17 Nov 2021
+* *2.5 hours* trying to get flask to work
+
+## Week 10
+
+### 24 Nov 2021
+* *1.5 hours* trying to get templates working, no progress
+
+### 25 Nov 2021
+* *2.5 hours* working on UI pages, still need to see what it looks like in browser
+* *0.5 hours* redrawing wireframes for some pages
+
+
 
  

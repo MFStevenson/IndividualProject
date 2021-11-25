@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{%block head%}
+    {{ super() }}
+    {% block title %} Report {% endblock %} 
+    <h1>Suggested Report </h1>
+{% endblock %}
+
+{%block main %}
+    <p>Given the experimental design, it is recommended you perform the following tests:</p>
+
+    <!-- Code to display what tests should be run, this will be generated from back end, see howt to display pandas dataframe -->
+
+    <a class="genReportButton" href="{{ url_for('templates', template='edit-report.html.html') }}">Edit Suggested Report</a>
+    <a class="genReportButton" href="{{ url_for('templates', template='report.html.html') }}">Generate Suggested Report</a>
+
+{%end block%}

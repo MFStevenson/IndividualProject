@@ -1,0 +1,19 @@
+h1 {
+    color: rgb(3, 3, 3);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+/* divs */
+.main{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* buttons */
+.genReportButton{
+    font-size: 16px;
+    padding: 14px 24px;
+    background-color: rgb(133, 133, 133);
+}

@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Statistical Analysis </title>
-        <!-- <link rel = "stylesheet" href => -->
-    </head>
+{% extends "base.html" %}
+{%block head%}
+    {{ super() }}
+    {% block title %} Home {% endblock %} 
+    <h1>Statistical Analysis </h1>
+{% endblock %}
 
-    <body> 
-        <h1> Statistical Analysis </h1>
-        <!-- <form action enctype="multipart/form-data"></form> -->
-    </body>
-</html>
+{% block main %}
+    <p>This application allows you to upload your experimental data and run the appropriate statistical tests.
+        It will give you a suite of recommended tests to run which you can edit if required and then generate a report.
+    </p>
+        <<form method= "POST" enctype= "multipart/form-data"></form>
+        <p> <input type="file" name ="experimental_data", accept=".csv, .xlsx, .txt"></p>
+        <p><input type="submit" value = "Upload"></p>
+
+        <a class="genReportButton" href="{{ url_for('templates', template='generate-report.html.html') }}">Generate Suggested Stats</a>
+        <
+{% endblock %}

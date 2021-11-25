@@ -1,9 +1,16 @@
+<!-- edited from https://flask.palletsprojects.com/en/2.0.x/patterns/templateinheritance/ -->
+
 <!DOCTYPE html>
 <<html lang = "en">
     <head>
-
+        {% block head %}
+        <title>{% block title %} {% endblock %} - Project </title>
+        <!-- issue with static, cannot build url_for endpoint error -->
+        <link rel= "stylesheet" type = "text/css" href= "{{ url_for('static', filename='css/main.css') }}"> 
+        {% endblock %}
     </head>
-    <body>
 
+    <body>
+        <div id = "main"> {% block main %} {% endblock %} </div>
     </body>
 </html>
