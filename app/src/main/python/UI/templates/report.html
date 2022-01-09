@@ -4,3 +4,10 @@
     {% block title %} Report {% endblock %} 
     <h1>Your Report </h1>
 {% endblock %}
+
+{% block main %}
+
+    <a class="editReportButton" href="{{ url_for('edit_report') }}">Perform Different Tests</a>
+    <a class="homeButton" href="{{ url_for('index') }}">Home</a>
+
+{% endblock %}

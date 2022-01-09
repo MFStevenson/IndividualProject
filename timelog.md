@@ -98,7 +98,17 @@
 
 ### 25 Nov 2021
 * *2.5 hours* working on UI pages, still need to see what it looks like in browser
-* *0.5 hours* redrawing wireframes for some pages
+* *0.75 hours* redrawing wireframes for some pages
+
+## Week 11
+
+### 1 Dec 2021
+* *1 hour* working on timeline of where I am, what remains to be done and a plan of action
+
+## Week 13
+
+### 14 Dec 2021
+* *0.5 hours* noting details about implementation in code
 
 
 

@@ -9,10 +9,16 @@
     <p>This application allows you to upload your experimental data and run the appropriate statistical tests.
         It will give you a suite of recommended tests to run which you can edit if required and then generate a report.
     </p>
-        <<form method= "POST" enctype= "multipart/form-data"></form>
-        <p> <input type="file" name ="experimental_data", accept=".csv, .xlsx, .txt"></p>
-        <p><input type="submit" value = "Upload"></p>
 
-        <a class="genReportButton" href="{{ url_for('templates', template='generate-report.html.html') }}">Generate Suggested Stats</a>
-        <
+    <form method= "POST" enctype= "multipart/form-data">
+        <input type="file" name ="experimental_data", accept=".csv, .xlsx, .txt"/>
+        <br></br>
+        <input type="submit" value = "Upload"/>
+        <input type="reset"/>
+        
+    </form>
+
+    <div class= "buttons">
+        <a class="genReportButton" href="{{ url_for('generate_report') }}">Generate Suggestion</a>
+    </div>
 {% endblock %}

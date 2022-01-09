@@ -4,8 +4,7 @@
 <<html lang = "en">
     <head>
         {% block head %}
-        <title>{% block title %} {% endblock %} - Project </title>
-        <!-- issue with static, cannot build url_for endpoint error -->
+        <title>{% block title %} {% endblock %} - Project </title>q
         <link rel= "stylesheet" type = "text/css" href= "{{ url_for('static', filename='css/main.css') }}"> 
         {% endblock %}
     </head>

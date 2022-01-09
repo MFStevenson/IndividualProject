@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{%block head%}
+
+    {{ super() }}
+    {% block title %} Report {% endblock %} 
+    <h1>Edit Suggested Report </h1>
+    
+{% endblock %}
+
+{% block main %}
+
+    <!-- code to make sure user is happy with changes -->
+    <div id = "descriptive"></div>
+    <div id = "visualisation"></div>
+    <div id = "inferential"></div>
+
+    <div class= "buttons">
+        <a class="genReportButton" href="{{ url_for('report') }}">Generate Report</a>
+    </div>
+
+{% endblock %}

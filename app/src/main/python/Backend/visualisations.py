@@ -16,3 +16,11 @@ def regression_plt(dat, x, y):
     plt.savefig("RegPlt.png")
 
     return plt
+
+def box_plt(dat,x, y):
+    plt = sns.boxplot(x = x, y = y, data = dat)
+    plt.savefig("BoxPlt.png")
+
+def violin_plot(dat, x, y):
+    plt = sns.violinplot(x = x, y = y, data = dat)
+    plt.savefig("ViolinPlt.png")

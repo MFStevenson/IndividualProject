@@ -22,3 +22,12 @@ def regression(test_dat):
     results = {'d': descriptives, 'i': inferential}
 
     return results
+
+def students_t_test(test_dat):
+    td = test_dat
+    grp1 = test_dat.columns[0]
+    grp2 = test_dat.columns[1]
+    
+    descriptives = mean_sd(td)
+    stat = pd.DataFrame(stats.ttest_ind(a = grp1, b = grp2, equal_var=False)).T
+    
