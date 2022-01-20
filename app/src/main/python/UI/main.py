@@ -29,14 +29,15 @@ def report():
     return render_template('report.html')
 
 #file_management.py
-@app.route("/upload_data", methods = ["GET", "POST"])
+@app.route("/experimental_data", methods = ["GET", "POST"])
 def upload():
     if request.method == 'POST':
         file = request.files['experimental_data']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename)))
-        return 0
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return 'file uploaded'
     else:
-        return 1
+        return 'error: file was not uploaded'
 
 if __name__ == "__main__":
     app.run()

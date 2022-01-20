@@ -36,24 +36,38 @@ def multi_test_data(dat, ivs, dv):
 
     if len(ivs) < 2:
         print("wrong type of test selected")
+
+    # filter data, need to make sure all ivs are filtered on
+    test_data = dat.filter(['iv', 'dv'], axis = 1)
     return test_dat
 
 dat = read_test_data('test_data.csv')
 
-# if 2 variables:
-test_dat = test_data(dat, 'Birthweight', 'Headcirc')
-# else
-test_dat = multi_test_data(dat, ivs, dv)
+'''
 
+if len(ivs) < 2:
+    # birthweight and headcirc should come from user input
+    test_dat = test_data(dat, 'Birthweight', 'Headcirc')
+else
+    test_dat = multi_test_data(dat, ivs, dv)
+
+'''
 # check data is good
 # could rename cols for consistency
 
-def recommend_test():
+def recommend_desc_test():
     recommendation = []
+
+    return recommendation
+
+def recommend_inf_test():
+    recommendation = []
+
     return recommendation
 
 def recommend_visualisation():
     recommendation = []
+
     return recommendation
 
 def run(test_dat):
@@ -63,25 +77,32 @@ def run(test_dat):
     # to do this, would need another func, say decide_test which would look at
     # experimental design procided by user
 
-    available_stats_tests = {"regression": regression, }
-    available_visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt}
+    # this will be from the user input
+    test = ['regression']
 
-    test = recommend_test()
+    descriptives_stats_tests = {"mean_sd": mean_sd, }
+    inferential_stats_tests = {"regression": regression, }
+    visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt}
+
+    inferential = recommend_inf_test()
+    descriptive = recommend_desc_test()
     vis = recommend_visualisation()
 
-    stats = {}
+    stats = {'d': None, "i": None}
 
     # If there are multiple tests/visualisations, then would put these in a list and for each item in the list check this
-    for t in test:
-        if test in available_stats_tests.keys():
-            stats = available_stats_tests[test]()
+
+    for t in descriptives_stats_tests:
+        if t in descriptives_stats_tests.keys():
+            stats['d'] = descriptives_stats_tests[t]()
+
+    for t in inferential_stats_tests:
+        if t in inferential_stats_tests.keys():
+            stats['i'] = inferential_stats_tests[t]()
     
     for v in vis:
-        if vis in available_visualisations.keys():
-            visualisation = available_visualisations[vis]()
-
-    descriptives = stats['d']
-    inferential = stats['i']
+        if v in visualisations.keys():
+            vis = visualisations[v]()
 
     return stats
 

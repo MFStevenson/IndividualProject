@@ -10,12 +10,10 @@
 {% block main %}
 
     <p>Given the experimental design, it is recommended you perform the following tests:</p>
+
+    <p> Will display the information in a table with the stats to be run and visualisations, it should also display the selected significance level </p>
+
     <!-- Code to display what tests should be run, this will be generated from back end, see how to display pandas dataframe -->
-    <form method="POST">
-            <label for="significance"> Significance Level: p <  </label>
-            <input id="significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
-            <input type="submit" value="Set">
-    </form>
 
     <div class= "buttons">
         <a class="editReportButton" href="{{ url_for('edit_report') }}">Edit</a> 

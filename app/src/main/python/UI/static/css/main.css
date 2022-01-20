@@ -6,8 +6,15 @@ h1 {
     font-weight: bold;
 }
 
+h2 {
+    color: rgb(3, 3, 3);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: bold;
+}
+
 form {
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 }
 
 /* divs */
@@ -38,8 +45,8 @@ form {
 }
 
 .buttons{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 

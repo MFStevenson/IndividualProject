@@ -110,6 +110,18 @@
 ### 14 Dec 2021
 * *0.5 hours* noting details about implementation in code
 
+## Week 14
 
+### 13 Jan 2022
+* *1.5 hours* working on UI and backend data flow, still need to implement functionality
 
- 
+## Week 15
+
+ ### 19 Jan 2022
+
+ * *1 hour* evaluating current work completed for MoSCoW requirements
+ * *4 hours* development of front end
+
+ ### 20 Jan 2022
+
+ * *0.5 hours* bug fixing, no progress so far

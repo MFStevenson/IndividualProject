@@ -4,18 +4,50 @@
     {{ super() }}
     {% block title %} Report {% endblock %} 
     <h1>Edit Suggested Report </h1>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 {% endblock %}
 
 {% block main %}
 
+<!-- <script src="{{ url_for('static', filename = 'available_functions.js') }}"></script> -->
+
     <!-- code to make sure user is happy with changes -->
-    <div id = "descriptive"></div>
-    <div id = "visualisation"></div>
-    <div id = "inferential"></div>
+    <form id = "significance" method="POST">
+        <label for="significance"> Significance Level: p <  </label>
+        <input id="significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
+        <input type="submit" value="Set">
+     </form>
+
+    <div id = "descriptive">
+        <h2>Descriptive Statistics</h2>
+        <button id="descTestsButton" onclick="showDescOptions()">Show Descriptive Tests</button>
+        <p id="test"></p>
+        <!-- some sort of for loop to go through the descriptive
+        stats available in dictionary from back end, attached to radio button
+        want to return the text of their choices to backend to then run specified tests -->
+    </div>
+
+    <div id = "visualisation">
+        <h2>Visualisations </h2>
+        <button id="visButton" onclick="showVisOptions()">Show Visualisations</button>
+        <!-- Same idea for loop -->
+    </div>
+
+    <div id = "inferential">
+        <h2>Inferential Statistics</h2>
+        <button id="infTestsButton" onclick="showInfOptions()">Show Inferential Tests</button>
+        <!-- Same idea for loop -->
+    </div>
 
     <div class= "buttons">
         <a class="genReportButton" href="{{ url_for('report') }}">Generate Report</a>
     </div>
+
+    <script>
+        function showDescOptions(){
+            document.getElementById("test").innerHTML = "display radio buttons with avaiable tests";
+        }
+    </script>
 
 {% endblock %}

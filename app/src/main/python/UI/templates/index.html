@@ -10,13 +10,39 @@
         It will give you a suite of recommended tests to run which you can edit if required and then generate a report.
     </p>
 
-    <form method= "POST" enctype= "multipart/form-data">
-        <input type="file" name ="experimental_data", accept=".csv, .xlsx, .txt"/>
-        <br></br>
-        <input type="submit" value = "Upload"/>
-        <input type="reset"/>
-        
-    </form>
+    <div main>
+        <h2> Data Upload </h2>
+        <p>Please upload your data here.  This should be in a csv file. </p>
+
+        <form method= "POST" enctype= "multipart/form-data">
+            <input type="file" name ="experimental_data", accept=".csv"/>
+            <br></br>
+            <input type="submit" value = "Upload"/>
+            <input type="reset"/>
+            
+        </form>
+
+        <h2> Experimental Design </h2>
+        <p> so far this is just text boxes, however this will be changed to look at the file uploaded and change the UI accordingly.  
+            This could be in the form of a list of radio buttons corresponding to variables depending on if the file has headings.</p>
+
+        <form id="design">
+            Independent Variable: <input type="text" name="iv"/>
+            <br></br>
+            Dependent Variable: <input type="text" name="dv"/>
+            <br></br>
+            <input type="submit" value = "Upload"/>
+
+        </form>
+
+        <form id = "significance" method="POST">
+            <label for="significance"> Significance Level: p <  </label>
+            <input id="significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
+            <input type="submit" value="Set">
+         </form>
+
+    </div>
+    
 
     <div class= "buttons">
         <a class="genReportButton" href="{{ url_for('generate_report') }}">Generate Suggestion</a>
