@@ -122,6 +122,13 @@
  * *1 hour* evaluating current work completed for MoSCoW requirements
  * *4 hours* development of front end
 
- ### 20 Jan 2022
+### 20 Jan 2022
 
  * *0.5 hours* bug fixing, no progress so far
+ * *4 hours* working on web pages, bug with file upload now fixed
+
+### 21 Jan 2022
+ * *2 hours* working on functionality behind buttons
+
+## Week 16
+

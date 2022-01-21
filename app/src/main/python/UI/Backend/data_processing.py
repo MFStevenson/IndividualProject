@@ -10,7 +10,9 @@ def read_test_data(data_file):
     file_type = os.path.splitext(data_file)[1]
     
     if file_type == csv:
-        dat = pd.read_csv(data_file)
+        # file will need to change to get current directory rather than hard coded in
+        file = "Users/miafulustevenson/Documents/CurrentUni/Fourth Year/CS/Project/IndividualProject/app/src/main/python/UI/experimental_data/" + data_file
+        dat = pd.read_csv(file)
  
     return dat
 
@@ -105,6 +107,5 @@ def run(test_dat):
             vis = visualisations[v]()
 
     return stats
-
 # d.to_csv("descriptive.csv", index = False)
 # i.to_csv("inferential.csv", index = False)
