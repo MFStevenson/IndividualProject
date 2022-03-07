@@ -23,15 +23,11 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def index():
     return render_template('index.html')
 
-@app.route('/generate_report')
-def generate_report():
-    return render_template('generate_report.html')
-
-@app.route('/edit_report', methods = ["GET", "POST"])
+@app.route('/create_report', methods = ["GET", "POST"])
 def edit_report():
     if request.method == "POST":
         exp_design = design()
-    return render_template('edit_report.html')
+    return render_template('create_report.html')
 
 @app.route('/report', methods = ['GET', 'POST'])
 def report():
@@ -47,7 +43,7 @@ def design():
         ivs = exp_design['iv']
         signififance = exp_design['significance']
 
-        return render_template('edit_report.html')
+        return render_template('create_report.html')
 
 @app.route("/run_stats", methods = ["GET", "POST"])
 def run_stats():

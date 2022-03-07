@@ -170,3 +170,9 @@
 ### 2nd Mar
 
 * *0.5 hours* looking at ethics, collating some initial ideas
+
+## Week 21
+
+### 7th Mar
+
+* *4 hours* working on output and streamlining design

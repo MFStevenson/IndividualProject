@@ -138,8 +138,7 @@ def run_analysis(exp_design):
 
     # also need to return vis
 
-    print(stats)
-
+    return stats
 
 def output():
     # should deal with outputs from program, will format this in front end
