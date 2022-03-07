@@ -132,3 +132,41 @@
 
 ## Week 16
 
+### 24 Jan 2022
+* *1 hour* coding to get front end data to back end
+
+### 25th Jan 2022
+* *6 hours* working on getting complete demo
+
+### 26th Jan 2022
+* *1.5 hours* still working on demo, need to work out where data goes
+
+## Week 17
+
+### 2nd Feb 2022
+* *4 hour* reading documentation about flask
+
+## Week 18
+
+### 8th Feb 2022
+* *6 hours* trying to make it work, so many bugs :(
+
+## Week 18
+
+### 17th Feb 2022
+* *8 hours* working on reformatting front and backend
+
+## Week 19
+
+### 23rd Feb 2022
+* *8 hours* making fromt end look nicer sorting through data flow for backend
+
+## Week 20
+
+### 1st Mar 2022
+
+* *2 hours* Data flow through program
+
+### 2nd Mar
+
+* *0.5 hours* looking at ethics, collating some initial ideas

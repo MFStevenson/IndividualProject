@@ -1,9 +1,12 @@
 from curses import flash
+from distutils.log import error
 from flask import Flask, render_template, request, flash
 from flask.helpers import url_for
 from werkzeug.utils import redirect, secure_filename
-
 import os
+import sys
+
+from Backend.data_processing import *
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -24,13 +27,33 @@ def index():
 def generate_report():
     return render_template('generate_report.html')
 
-@app.route('/edit_report')
+@app.route('/edit_report', methods = ["GET", "POST"])
 def edit_report():
+    if request.method == "POST":
+        exp_design = design()
     return render_template('edit_report.html')
 
-@app.route('/report')
+@app.route('/report', methods = ['GET', 'POST'])
 def report():
-    return render_template('report.html')
+    #if request.method == "POST":
+    return redirect(url_for("run_stats"))
+    #else:
+     #   flash("Error: Report Not Generated, please check that you have input everything")
+      #  return render_template('edit_report.html')
+
+def design():
+        exp_design = read_exp_design()
+        dvs = exp_design['dv']
+        ivs = exp_design['iv']
+        signififance = exp_design['significance']
+
+        return render_template('edit_report.html')
+
+@app.route("/run_stats", methods = ["GET", "POST"])
+def run_stats():
+    # need to get this from previous function
+    result = run_analysis(exp_design=design())
+    return render_template('report.html', stats=result)
 
 #file_management.py
 @app.route("/upload", methods = ['GET', 'POST'])

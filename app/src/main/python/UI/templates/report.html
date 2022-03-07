@@ -2,11 +2,20 @@
 {%block head%}
     {{ super() }}
     {% block title %} Report {% endblock %} 
-    <h1>Your Report </h1>
 {% endblock %}
 
 {% block main %}
-<p> Results from the experiment will be displayed here, if there are multiple runs then results will be displayed in a table</p>
+    <h1>Your Report </h1>
+    <hr>
+
+    <table>
+        {% for key, value in stats.items() %}
+        <tr>
+            <td> {{ value }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
     <a class="editReportButton" href="{{ url_for('edit_report') }}">Perform Different Tests</a>
     <a class="homeButton" href="{{ url_for('index') }}">Home</a>
 

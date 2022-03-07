@@ -2,10 +2,12 @@
 {%block head%}
     {{ super() }}
     {% block title %} Home {% endblock %} 
-    <h1>Statistical Analysis </h1>
+
 {% endblock %}
 
 {% block main %}
+    <h1>Statistical Analysis </h1>
+    <hr>
     <p>This application allows you to upload your experimental data and run the appropriate statistical tests.
         It will give you a suite of recommended tests to run which you can edit if required and then generate a report.
     </p>
@@ -26,20 +28,19 @@
         <p> so far this is just text boxes, however this will be changed to look at the file uploaded and change the UI accordingly.  
             This could be in the form of a list of radio buttons corresponding to variables depending on if the file has headings.</p>
 
-        <form id="design">
-            Independent Variable: <input type="text" name="iv"/>
-            <br></br>
-            Dependent Variable: <input type="text" name="dv"/>
-            <br></br>
+        <form name = "variables" id="variables" action = "{{ url_for('edit_report')}}" method = "POST">
+            <label for="significance"> Significance Level: p <  </label>
+            <input id="significance" name = "significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
+
+            <label for= "iv"> Independent Variable: <label>
+            <input type="text" name="iv"/>
+
+            <label for="dv">Dependent Variable: <label>
+            <input type="text" name="dv"/>
+
             <input type="submit" value = "Upload"/>
 
         </form>
-
-        <form id = "significance" method="POST">
-            <label for="significance"> Significance Level: p <  </label>
-            <input id="significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
-            <input type="submit" value="Set">
-         </form>
 
     </div>
     
