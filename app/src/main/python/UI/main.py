@@ -18,7 +18,6 @@ UPLOAD_ROOT = 'experimental_data/'
 UPLOAD_FOLDER = os.path.join(BASE_DIR, UPLOAD_ROOT)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# views.py (urls for html pages)
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     return render_template('index.html')

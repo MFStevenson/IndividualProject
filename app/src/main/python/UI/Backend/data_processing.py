@@ -1,8 +1,9 @@
 # imports
+from curses import flash
 from numpy import require
 import pandas as pd
 import os.path
-from flask import request
+from flask import request, redirect, url_for
 import cgi
 import sys
 
@@ -30,11 +31,11 @@ def read_exp_design():
     # this data will come from user filling in form
     # could store in dictionary so can access this for later, e.g., reading in
 
-    significance = 0.05 #request.form.get("significance")
+    significance = request.form.get("significance")
 
     # need to create these, and look at implementing radio buttons
-    dvs = "birthweight" #request.form.get("dv")
-    ivs = "headcirc" #request.form.get("iv")
+    dvs = request.form.get("dv")
+    ivs = request.form.get("iv")
 
     exp_design = {'significance': significance, 'iv': ivs, 'dv': dvs}
 
@@ -53,7 +54,8 @@ def multi_test_data(dat, ivs, dv):
     test_dat = 0
 
     if len(ivs) < 2:
-        print("wrong type of test selected")
+        flash("wrong type of test selected")
+        return redirect(url_for('create_report'))
 
     # filter data, need to make sure all ivs are filtered on
     test_data = dat.filter(['iv', 'dv'], axis = 1)
@@ -68,23 +70,6 @@ else
     test_dat = multi_test_data(dat, ivs, dv)
 
 '''
-# check data is good
-# could rename cols for consistency
-
-def recommend_desc_test():
-    recommendation = []
-
-    return recommendation
-
-def recommend_inf_test():
-    recommendation = []
-
-    return recommendation
-
-def recommend_visualisation():
-    recommendation = []
-
-    return recommendation
 
 def run_analysis(exp_design):
     # in here need to work out how to select the different test to be run
@@ -97,25 +82,20 @@ def run_analysis(exp_design):
 
     current_dat = "test_data.csv"
     dat = read_test_data(current_dat)
-    ivs = "birthweight" #exp_design['iv']
-    dvs = "headcirc" #exp_design['dv']
+    ivs = exp_design['iv']
+    dvs = exp_design['dv']
     exp_dat = test_data(dat,ivs, dvs)
 
     descriptives_stats_tests = {"mean_sd": mean_sd, }
     inferential_stats_tests = {"regression": regression, }
     visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt,}
 
-    # need to send this back to user
-    inferential = recommend_inf_test()
-    descriptive = recommend_desc_test()
-    vis = recommend_visualisation()
-
     # will be data in forms when user presses 'generate report', need to get this from user input
     finalProb = 0.05 #exp_design["significance"]
-    finalDesc = "mean_sd"#request.form["desc"]
-    finalVis = "regression_plt"#request.form["vis"]
-    finalInf = "regression"#request.form["inf"]
-    finalMetrics = "" #request.form["metric"]
+    finalDesc = request.form["desc"]
+    finalVis = request.form["vis"]
+    finalInf = request.form["inf"]
+    finalMetrics = request.form["metric"]
 
     stats = {'d': None, "i": None}
 
@@ -140,14 +120,5 @@ def run_analysis(exp_design):
 
     return stats
 
-def output():
-    # should deal with outputs from program, will format this in front end
-    # so output should just be results gained from data_rpocessing
-    # outputs:
-        # results from tests,
-        # visualisations,
-        # summary of results, this summary could come from a selection of 
-        # predefined phrases, could be based on p-val
-    return 0
 # d.to_csv("descriptive.csv", index = False)
 # i.to_csv("inferential.csv", index = False)

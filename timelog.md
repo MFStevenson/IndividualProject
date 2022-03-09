@@ -176,3 +176,8 @@
 ### 7th Mar
 
 * *4 hours* working on output and streamlining design
+
+### 9th Mar
+
+* *1 hour* working on sheets for evaluation
+* *3 hours* working on fixing backend and making things look nice
