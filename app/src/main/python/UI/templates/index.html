@@ -8,15 +8,16 @@
 {% block main %}
     <h1>Statistical Analysis </h1>
     <hr>
-    <p>This application allows you to upload your experimental data and run the appropriate statistical tests.
-        It will give you a suite of recommended tests to run which you can edit if required and then generate a report.
+    <p>This application allows users to upload experimental data and perform statistical analysis on it.
+        You will chose which tests you would like to run and a report will be generated with the 
+        results of these tests
     </p>
 
-    <div main>
+    <div id="home">
         <h2> Data Upload </h2>
         <p>Please upload your data here.  This should be in a csv file. </p>
 
-        <form action = "{{ url_for('upload') }}" method= "POST" enctype= "multipart/form-data">
+        <form id = "upload_form" action = "{{ url_for('upload') }}" method= "POST" enctype= "multipart/form-data">
             <input type="file" name ="experimental_data", accept=".csv"/>
             <br></br>
             <input type="submit" value = "Upload"/>
@@ -28,13 +29,13 @@
         <p> so far this is just text boxes, however this will be changed to look at the file uploaded and change the UI accordingly.  
             This could be in the form of a list of radio buttons corresponding to variables depending on if the file has headings.</p>
 
-        <form name = "variables" id="variables" action = "{{ url_for('edit_report')}}" method = "POST">
+        <form name = "variables" id="exp_design_form" action = "{{ url_for('create_report') }}" method = "POST">
             <label for="significance"> Significance Level: p <  </label>
             <input id="significance" name = "significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
-
+            <br>
             <label for= "iv"> Independent Variable: <label>
             <input type="text" name="iv"/>
-
+            
             <label for="dv">Dependent Variable: <label>
             <input type="text" name="dv"/>
 
@@ -44,8 +45,4 @@
 
     </div>
     
-
-    <div class= "buttons">
-        <a class="genReportButton" href="{{ url_for('create_report') }}">Create Report</a>
-    </div>
 {% endblock %}

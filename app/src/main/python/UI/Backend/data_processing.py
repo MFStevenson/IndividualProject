@@ -1,18 +1,11 @@
 # imports
 from curses import flash
-from numpy import require
 import pandas as pd
 import os.path
 from flask import request, redirect, url_for
-import cgi
-import sys
-
-from sympy import im, re
-from flask import jsonify
 
 from Backend.stats_tests import *
 from Backend.visualisations import *
-
 
 def read_test_data(data_file):
     csv = '.csv'
@@ -27,9 +20,6 @@ def read_test_data(data_file):
     return dat
 
 def read_exp_design():
-    # this should read in data about the design so ivs, dvs, etc
-    # this data will come from user filling in form
-    # could store in dictionary so can access this for later, e.g., reading in
 
     significance = request.form.get("significance")
 
@@ -37,7 +27,7 @@ def read_exp_design():
     dvs = request.form.get("dv")
     ivs = request.form.get("iv")
 
-    exp_design = {'significance': significance, 'iv': ivs, 'dv': dvs}
+    exp_design = {'significance': float(significance), 'iv': ivs, 'dv': dvs}
 
     return exp_design
 
@@ -61,20 +51,10 @@ def multi_test_data(dat, ivs, dv):
     test_data = dat.filter(['iv', 'dv'], axis = 1)
     return test_dat
 
-'''
-
-if len(ivs) < 2:
-    # birthweight and headcirc should come from user input
-    test_dat = test_data(dat, 'Birthweight', 'Headcirc')
-else
-    test_dat = multi_test_data(dat, ivs, dv)
-
-'''
-
 def run_analysis(exp_design):
     # in here need to work out how to select the different test to be run
     # logic of this could be to get the test to run previous then use something
-    # like a case statement to switch between options and run appropriate suite
+    # like a case statement to switch between åoptions and run appropriate suite
     # to do this, would need another func, say decide_test which would look at
     # experimental design procided by user
 
@@ -86,39 +66,52 @@ def run_analysis(exp_design):
     dvs = exp_design['dv']
     exp_dat = test_data(dat,ivs, dvs)
 
+
     descriptives_stats_tests = {"mean_sd": mean_sd, }
     inferential_stats_tests = {"regression": regression, }
     visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt,}
+    metrics = {}
 
-    # will be data in forms when user presses 'generate report', need to get this from user input
-    finalProb = 0.05 #exp_design["significance"]
-    finalDesc = request.form["desc"]
-    finalVis = request.form["vis"]
-    finalInf = request.form["inf"]
-    finalMetrics = request.form["metric"]
+    finalDesc = request.form.get("desc")
+    finalVis = request.form.get("vis")
+    finalInf = request.form.get("inf")
+    finalMetric = request.form.get("metric")
 
-    stats = {'d': None, "i": None}
-
+    global statistics
+    statistics = {'d': None, 'i': None}
+    results = {'descriptive': None, "inferential": None}
+    vis = None
     # If there are multiple tests/visualisations, then would put these in a list and for each item in the list check this
 
     for t in descriptives_stats_tests:
         if t in descriptives_stats_tests.keys():
             if finalDesc == t:
-                stats['d'] = descriptives_stats_tests[t](exp_dat).to_html()
+                statistics['d'] = descriptives_stats_tests[t](exp_dat)
+                results['descriptive'] = statistics['d'].to_html()
 
     for t in inferential_stats_tests:
         if t in inferential_stats_tests.keys():
             if finalInf == t:
-                stats['i'] = inferential_stats_tests[t](exp_dat).to_html()
+                statistics['i'] = inferential_stats_tests[t](exp_dat)
+                results['inferential'] = statistics['i'].to_html()
     
-    for v in vis:
+    for v in visualisations:
         if v in visualisations.keys():
             if finalVis == v:
-                vis = visualisations[v](exp_dat)
-
+                vis = visualisations[v](exp_dat, ivs, dvs)
+                
+        analysis = {"vis": vis, "stats": results}
     # also need to return vis
+    return analysis
 
-    return stats
+'''
+    for t in metrics:
+        if t in metrics.keys():
+            if finalMetric == t:
+                statistics['m'] = metrics[t](exp_dat)
+                results['i'] = statistics['m'].to_html()
+'''
 
-# d.to_csv("descriptive.csv", index = False)
-# i.to_csv("inferential.csv", index = False)
+def get_p():
+    p = statistics['i'].iloc[0]['p-val'].item()
+    return p

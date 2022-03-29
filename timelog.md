@@ -181,3 +181,27 @@
 
 * *1 hour* working on sheets for evaluation
 * *3 hours* working on fixing backend and making things look nice
+
+### 10th Mar
+
+* *1 hour* trying to work out data flow
+
+## Week 23
+
+### 24 Mar
+
+* *3 hours* dissertation writing
+* *1 hour* debugging, still not liking variables
+
+### 25 Mar
+
+* *5 hours* styling pages
+
+### 27 Mar
+
+* *1 hour* coding
+* *0.5 hours* working materials for video presentation
+
+## Week 24
+
+* *8 hours* polishing system

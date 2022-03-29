@@ -1,26 +1,46 @@
 import pandas as pd
 import seaborn as sns
+import base64
+import io
+import matplotlib.pyplot as plt
 
 from Backend.data_processing import *
 
 sns.set_theme()
 
+wd = "/Users/miafulustevenson/Documents/CurrentUni/Fourth Year/CS/Project/IndividualProject/app/src/main/python/UI/media/"
 def scatter_plt(dat, x, y):
-    plt = sns.scatterplot(data = dat, x = x, y = y)
-    plt.savefig("ScatterPlt.png")
-
-    return plt
+    sns.scatterplot(data = dat, x = x, y = y)
+    img = io.BytesIO()
+    plt.savefig(img, format = 'png')
+    plt.close()
+    img.seek(0)
+    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
+    return plt_url
 
 def regression_plt(dat, x, y):
-    plt = sns.regplot(x = x, y = y, data = dat)
-    plt.savefig("RegPlt.png")
-
-    return plt
+    sns.regplot(x = x, y = y, data = dat)
+    img = io.BytesIO()
+    plt.savefig(img, format = 'png')
+    plt.close()
+    img.seek(0)
+    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
+    return plt_url
 
 def box_plt(dat,x, y):
-    plt = sns.boxplot(x = x, y = y, data = dat)
-    plt.savefig("BoxPlt.png")
+    sns.boxplot(x = x, y = y, data = dat)
+    img = io.BytesIO()
+    plt.savefig(img, format = 'png')
+    plt.close()
+    img.seek(0)
+    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
+    return plt_url
 
 def violin_plot(dat, x, y):
-    plt = sns.violinplot(x = x, y = y, data = dat)
-    plt.savefig("ViolinPlt.png")
+    sns.violinplot(x = x, y = y, data = dat)
+    img = io.BytesIO()
+    plt.savefig(img, format = 'png')
+    plt.close()
+    img.seek(0)
+    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
+    return plt_url

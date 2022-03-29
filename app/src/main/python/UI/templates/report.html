@@ -8,13 +8,27 @@
     <h1>Your Report </h1>
     <hr>
 
-    {% for key, value in stats.items() %}
-    <tr>
-        <td> {{ value | safe }} </td>
-        <br>
-    </tr>
-    {% endfor %}
+    <div id = "final_stats">
+        {% for key, value in stats.items() %}
+        <p> Your {{key}} statistics: </p>
+        <tr>
+            <td> {{ value | safe }} </td>
+            <br>
+        </tr>
+        {% endfor %}
+        </div>
+    <div id = "final_vis">
+        <p>Your visualisation: </p>
+        <img src="data:image/png;base64, {{vis}}" alt = "plot of results">
+    </div>
 
+    <div id="is_significant">
+        {% if significant %}
+            <p> Your p value is significant, meaining the null hypothesis is rejected</p>
+        {% else %}
+            <p> Your p value is non-significant meaning the null hypothesis is accepted </p>
+        {% endif %}
+    </div>
     
     <a class="editReportButton" href="{{ url_for('create_report') }}">Perform Different Tests</a>
     <a class="homeButton" href="{{ url_for('index') }}">Home</a>
