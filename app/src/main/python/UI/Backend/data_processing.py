@@ -70,7 +70,7 @@ def run_analysis(exp_design):
     descriptives_stats_tests = {"mean_sd": mean_sd, }
     inferential_stats_tests = {"regression": regression, }
     visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt,}
-    metrics = {}
+    metrics = {"precision": precision,}
 
     finalDesc = request.form.get("desc")
     finalVis = request.form.get("vis")
@@ -95,6 +95,12 @@ def run_analysis(exp_design):
                 statistics['i'] = inferential_stats_tests[t](exp_dat)
                 results['inferential'] = statistics['i'].to_html()
     
+    for t in metrics:
+        if t in metrics.keys():
+            if finalMetric == t:
+                statistics['i'] = metrics[t](exp_dat)
+                results['inferential'] = statistics['i'].to_html()
+    
     for v in visualisations:
         if v in visualisations.keys():
             if finalVis == v:
@@ -104,13 +110,7 @@ def run_analysis(exp_design):
     # also need to return vis
     return analysis
 
-'''
-    for t in metrics:
-        if t in metrics.keys():
-            if finalMetric == t:
-                statistics['m'] = metrics[t](exp_dat)
-                results['i'] = statistics['m'].to_html()
-'''
+
 
 def get_p():
     p = statistics['i'].iloc[0]['p-val'].item()

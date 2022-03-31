@@ -12,10 +12,11 @@
     <hr>
 
 <!-- <script src="{{ url_for('static', filename = 'available_functions.js') }}"></script> -->
+<p> Use this page to create your report.  Click on the checkboxes of the tests and visualisations you would like to run and press generate when you are ready to go.</p>
 
     <form name = "reportData" action = "{{ url_for('report')}}" id ="exp_tests_form" method="POST">
 
-        <fieldset id = "descriptive_field">
+        <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #2ead79">description</span> Descriptive Statistics </legend>
             
             <input type ="checkbox" id = "mean_sd" name = "desc" value="mean_sd">
@@ -26,7 +27,7 @@
         <!-- some sort of for loop to go through the descriptive
         stats available in dictionary from back end, attached to radio button
         want to return the text of their choices to backend to then run specified tests -->
-        <fieldset id = "visualisations">
+        <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #BF40BF">analytics</span> Visualisations </legend>
 
             <input type = "checkbox" id = "scatter_plt" name = "vis" value = "scatter_plt">
@@ -38,7 +39,7 @@
 
 
         <!-- Same idea for loop -->
-        <fieldset id = "inferential">
+        <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #0509df">data_exploration</span> Inferential Statistics </legend>
 
             <input type = "checkbox" id = "regression" name = "inf" value = "regression">
@@ -47,7 +48,7 @@
  
         <!-- Same idea for loop -->
 
-        <fieldset id = "metrics">
+        <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #ee850e">straighten</span> Metrics </legend>
             <input type = "checkbox" id = "precision" name = "metric" value = "precision">
             <label for = "precision">Precision</label><br></br>

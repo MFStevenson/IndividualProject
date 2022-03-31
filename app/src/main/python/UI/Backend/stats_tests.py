@@ -29,4 +29,7 @@ def students_t_test(test_dat):
     
     descriptives = mean_sd(td)
     stat = pd.DataFrame(stats.ttest_ind(a = grp1, b = grp2, equal_var=False)).T
+
+def precision(test_dat):
+    return 0
     

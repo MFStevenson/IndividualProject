@@ -1,28 +1,46 @@
-
 #upload_form{
-
+    margin-left: 50px;
+    border-style: solid;
+    border-color: red;
+    width: 500px;
+    padding: 10px;
 }
 
 #exp_design_form{
-
+    margin-left: 50px;
+    border-style: solid;
+    border-color: red;
+    width: 800px;
+    padding: 10px;
 }
 
 #exp_tests_form{
+    margin-left: 50px;
+}
 
+input[type=checkbox]{
+    margin-left: 50px;
 }
 
 #final_stats{
-
+    float:left;
+    width: 40%;
+    margin-left: 20px;
 }
 
 #final_vis{
-
+    float: right;
+    width: 50%;
 }
 
 #is_significant{
-    background-color: rgba(37, 204, 37, 0.747);
+    text-align: center;
+    border-style: solid;
+    border-color: rgb(37, 204, 37);
+    background-color: rgba(37, 204, 37, 0.26);
+    width: 100%;
+    display: flex;
 }
-
 #home{
-
+margin-left: 50px;   
 }
