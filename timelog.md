@@ -186,6 +186,8 @@
 
 * *1 hour* trying to work out data flow
 
+## Week 22
+
 ## Week 23
 
 ### 24 Mar
@@ -204,4 +206,26 @@
 
 ## Week 24
 
+### 28 Mar
 * *8 hours* polishing system
+
+### 29 Mar
+
+* *6 hours* Writing dissertation
+
+### 1 April
+
+* *2 hours* Conducting user evaluations
+* *1 hour* writing up results
+
+### 2 April
+
+* *2 hours* implementing feedback from evals
+* *1 hour* writing dissertation
+
+## Week 25
+
+### 4 April
+
+* *1 hour* implementing feedback, changing styling
+* *2 hours* writing dissertation

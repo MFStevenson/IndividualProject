@@ -21,10 +21,24 @@
 
             <input type="file" name ="experimental_data", accept=".csv"/>
             <br></br>
-            <input type="submit" value = "Upload"/>
-            <input type="reset"/>
+            <input class="btn btn-outline-info" type="submit" value = "Upload"/>
+            <input class="btn btn-outline-danger" type="reset"/>
             
         </form>
+
+        <div id = "messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for category, message in messages %}
+                        <div class = "alert alert-primary" role = "alert">
+                            <li class="{{ category }}">{{ message }}</li>
+                        </div>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
 
         <h2> Experimental Design </h2>
 
@@ -39,7 +53,7 @@
             <label for="dv">Dependent Variable: <label>
             <input type="text" name="dv"/>
 
-            <input type="submit" value = "Upload"/>
+            <input class="btn btn-outline-info" type="submit" value = "Upload"/>
 
         </form>
 

@@ -1,7 +1,16 @@
+input[type=checkbox]{
+    margin-left: 50px;
+}
+
+th, td {
+    padding: 5px;
+  }
+
 #upload_form{
     margin-left: 50px;
     border-style: solid;
-    border-color: red;
+    border-color: rgba(81, 0, 255, 0.665);
+    border-width: 3px;
     width: 500px;
     padding: 10px;
 }
@@ -9,17 +18,15 @@
 #exp_design_form{
     margin-left: 50px;
     border-style: solid;
-    border-color: red;
+    border-width: 3px;
+    border-color: rgba(81, 0, 255, 0.665);
     width: 800px;
     padding: 10px;
 }
 
 #exp_tests_form{
     margin-left: 50px;
-}
-
-input[type=checkbox]{
-    margin-left: 50px;
+    padding-bottom: 20px;
 }
 
 #final_stats{
@@ -38,8 +45,17 @@ input[type=checkbox]{
     border-style: solid;
     border-color: rgb(37, 204, 37);
     background-color: rgba(37, 204, 37, 0.26);
-    width: 100%;
+    width: 50%;
     display: flex;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#buttons{
+    padding-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 #home{
 margin-left: 50px;   

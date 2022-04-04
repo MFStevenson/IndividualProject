@@ -5,7 +5,7 @@
     <head>
         {% block head %}
         <title>{% block title %} {% endblock %} - Project </title>
-       
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -16,33 +16,24 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light" style = "background-color: #8dcdfaf3;">
-            <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('create_report') }}">Create report</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('report') }}">Report</a>
-                </li>
-                </li>
-              </ul>
-            </div>
-          </nav>
 
-          <img src="{{url_for('static', filename='media/logo.png')}}" width = "60", length = "60" class="rounded float-right" alt = "logo"/>
-
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-              <li>{{ message }}</li>
-            {% endfor %}
+      <nav class="navbar navbar-expand-lg navbar-light" style = "background-color: #8dcdfaf3;">
+          <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('create_report') }}">Create report</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('report') }}">Report</a>
+              </li>
+              </li>
             </ul>
-          {% endif %}
-        {% endwith %}
-        
-        <div id = "main"> {% block main %} {% endblock %} </div>
+          </div>
+        </nav>
+
+      <img src="{{url_for('static', filename='media/logo.png')}}" width = "60", length = "60" class="rounded float-right" alt = "logo"/>
+      
+      <div id = "main"> {% block main %} {% endblock %} </div>
     </body>
 </html>

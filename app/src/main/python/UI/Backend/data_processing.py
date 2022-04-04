@@ -1,5 +1,5 @@
 # imports
-from curses import flash
+from flask import flash
 import pandas as pd
 import os.path
 from flask import request, redirect, url_for
@@ -10,10 +10,11 @@ from Backend.visualisations import *
 def read_test_data(data_file):
     csv = '.csv'
     file_type = os.path.splitext(data_file)[1]
-    wd = "/Users/miafulustevenson/Documents/CurrentUni/Fourth Year/CS/Project/IndividualProject/app/src/main/python/UI/experimental_data/"
+    exp_dir = 'experimental_data/'
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    wd = os.path.join(cur_dir, exp_dir)
     
     if file_type == csv:
-        # file will need to change to get current directory rather than hard coded in
         file = wd + data_file
         dat = pd.read_csv(file)
  
@@ -52,16 +53,11 @@ def multi_test_data(dat, ivs, dv):
     return test_dat
 
 def run_analysis(exp_design):
-    # in here need to work out how to select the different test to be run
-    # logic of this could be to get the test to run previous then use something
-    # like a case statement to switch between åoptions and run appropriate suite
-    # to do this, would need another func, say decide_test which would look at
-    # experimental design procided by user
 
-    # this will be from the user input
-
-    current_dat = "test_data.csv"
+    current_dat = exp_design['data_file']
     dat = read_test_data(current_dat)
+    dat = dat.rename(columns=str.lower)
+    dat.columns = dat.columns.str.replace(" ", "")
     ivs = exp_design['iv']
     dvs = exp_design['dv']
     exp_dat = test_data(dat,ivs, dvs)
@@ -81,7 +77,6 @@ def run_analysis(exp_design):
     statistics = {'d': None, 'i': None}
     results = {'descriptive': None, "inferential": None}
     vis = None
-    # If there are multiple tests/visualisations, then would put these in a list and for each item in the list check this
 
     for t in descriptives_stats_tests:
         if t in descriptives_stats_tests.keys():
@@ -109,8 +104,6 @@ def run_analysis(exp_design):
         analysis = {"vis": vis, "stats": results}
     # also need to return vis
     return analysis
-
-
 
 def get_p():
     p = statistics['i'].iloc[0]['p-val'].item()

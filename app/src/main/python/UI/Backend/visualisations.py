@@ -36,7 +36,7 @@ def box_plt(dat,x, y):
     plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
     return plt_url
 
-def violin_plot(dat, x, y):
+def violin_plt(dat, x, y):
     sns.violinplot(x = x, y = y, data = dat)
     img = io.BytesIO()
     plt.savefig(img, format = 'png')

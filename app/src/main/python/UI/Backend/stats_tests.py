@@ -1,5 +1,6 @@
 import pandas as pd
 from scipy import stats
+from sklearn import metrics
 
 from Backend.data_processing import *
 
@@ -23,13 +24,21 @@ def regression(test_dat):
     return results
 
 def students_t_test(test_dat):
-    td = test_dat
     grp1 = test_dat.columns[0]
     grp2 = test_dat.columns[1]
-    
-    descriptives = mean_sd(td)
+
     stat = pd.DataFrame(stats.ttest_ind(a = grp1, b = grp2, equal_var=False)).T
 
+    inferential = stat.rename(columns={0: "t-val", 1: "p-val"})
+    results = inferential
+
+    return results
+
 def precision(test_dat):
-    return 0
+    y_true = test_dat.columns[0]
+    y_pred = test_dat.columns[1]
+    results = pd.DataFrame(metrics.precision_score(y_true, y_pred, average=None))
+    results = results.rename(columns={0: "precision"})
+
+    return results
     

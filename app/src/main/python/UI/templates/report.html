@@ -29,8 +29,11 @@
             <p> Your p value is <strong>non-significant</strong> meaning the null hypothesis is accepted </p>
         {% endif %}
     </div>
-    
-    <a class="editReportButton" href="{{ url_for('create_report') }}">Perform Different Tests</a>
-    <a class="homeButton" href="{{ url_for('index') }}">Home</a>
+
+    <div id = "buttons">
+        <!-- <a class="btn btn-outline-success" href="{{ url_for('save_pdf') }}">Save Report</a> -->
+        <a class="btn btn-outline-info" href="{{ url_for('index') }}">Home</a>
+    </div>
+
 
 {% endblock %}
