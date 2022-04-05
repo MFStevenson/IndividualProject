@@ -64,7 +64,7 @@ def run_analysis(exp_design):
 
 
     descriptives_stats_tests = {"mean_sd": mean_sd, }
-    inferential_stats_tests = {"regression": regression, }
+    inferential_stats_tests = {"regression": regression, "students_t_test": students_t_test}
     visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt,}
     metrics = {"precision": precision,}
 
@@ -106,5 +106,9 @@ def run_analysis(exp_design):
     return analysis
 
 def get_p():
-    p = statistics['i'].iloc[0]['p-val'].item()
+    p = statistics['i']
+    if p is None:
+        p = 0
+    else:
+        p = statistics['i'].iloc[0]['p-val'].item()
     return p

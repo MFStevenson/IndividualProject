@@ -10,12 +10,17 @@
 
     <div id = "final_stats">
         {% for key, value in stats.items() %}
-        <p> Your {{key}} statistics: </p>
-        <tr>
-            <td> {{ value | safe }} </td>
-            <br>
-        </tr>
+            <p> Your {{key}} statistics: </p>
+            {% if value is none %}
+                <p> No {{key}} tests selected </p>
+            {% else %}
+                <tr>
+                    <td> {{ value | safe }} </td>
+                    <br>
+                </tr>
+            {% endif %}
         {% endfor %}
+
         </div>
     <div id = "final_vis">
         <p>Your visualisation: </p>
@@ -31,7 +36,6 @@
     </div>
 
     <div id = "buttons">
-        <!-- <a class="btn btn-outline-success" href="{{ url_for('save_pdf') }}">Save Report</a> -->
         <a class="btn btn-outline-info" href="{{ url_for('index') }}">Home</a>
     </div>
 

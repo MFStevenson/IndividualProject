@@ -15,6 +15,8 @@ UPLOAD_ROOT = 'Backend/experimental_data/'
 UPLOAD_FOLDER = os.path.join(BASE_DIR, UPLOAD_ROOT)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+exp_design = {'data_file': None, "significance": None, 'iv': None, 'dv': None}
+
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     return render_template('index.html')
@@ -27,8 +29,6 @@ def upload():
             return redirect(url_for('index'))
 
         filename = secure_filename(file.filename)
-        global exp_design
-        exp_design = {}
         exp_design['data_file'] = filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File upload successful')
@@ -38,7 +38,7 @@ def upload():
         return redirect(url_for('index'))
 
 def design():
-    d = read_exp_design() 
+    d = read_exp_design()
     exp_design['significance'] = d['significance']
     exp_design['iv'] = d['iv'].lower().replace(" ", "")
     exp_design['dv'] = d['dv'].lower().replace(" ", "")
@@ -57,7 +57,14 @@ def run_stats():
 @app.route('/create_report', methods = ["GET", "POST"])
 def create_report():
     if request.method == "POST":
+        if exp_design['data_file'] is None:
+            flash('Error: no experimental design, please upload data and input variables')
+            return redirect(url_for('index'))
         design()
+        if len(exp_design['iv']) == 0 or len(exp_design['dv']) == 0:
+            flash('Error: Variables missing, please input variables and try again')
+            return redirect(url_for('index'))
+            
         return render_template('create-report.html')
     else:
         return render_template('create-report.html')
@@ -70,9 +77,6 @@ def report():
     else:
         return render_template('report.html', stats = {}, vis = None, significant = None)
 
-@app.route('/save_pdf', methods = ['GET', 'POST'])
-def save_pdf():
-    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run()

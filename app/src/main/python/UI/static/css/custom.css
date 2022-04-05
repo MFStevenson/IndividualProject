@@ -45,7 +45,7 @@ th, td {
     border-style: solid;
     border-color: rgb(37, 204, 37);
     background-color: rgba(37, 204, 37, 0.26);
-    width: 50%;
+    width: 100%;
     display: flex;
     padding-bottom: 10px;
     margin-left: 20px;
@@ -59,4 +59,8 @@ th, td {
 }
 #home{
 margin-left: 50px;   
+}
+
+#messages{
+    margin-top: 10px;
 }

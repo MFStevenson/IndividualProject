@@ -27,8 +27,7 @@ def students_t_test(test_dat):
     grp1 = test_dat.columns[0]
     grp2 = test_dat.columns[1]
 
-    stat = pd.DataFrame(stats.ttest_ind(a = grp1, b = grp2, equal_var=False)).T
-
+    stat = pd.DataFrame(stats.ttest_ind(a = grp1, b = grp2, equal_var=False))
     inferential = stat.rename(columns={0: "t-val", 1: "p-val"})
     results = inferential
 
