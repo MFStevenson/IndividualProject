@@ -14,34 +14,41 @@
     </p>
 
     <div id="home">
-        <h2> Data Upload </h2>
         
         <form id = "upload_form" action = "{{ url_for('upload') }}" method= "POST" enctype= "multipart/form-data">
+            <h2>Data Upload</h2>
             <p>Please upload your data here.  This should be in a csv file. </p>
 
             <input type="file" name ="experimental_data", accept=".csv"/>
             <br></br>
             <input class="btn btn-outline-info" type="submit" value = "Upload"/>
             <input class="btn btn-outline-danger" type="reset"/>
+            <br></br>
             
         </form>
 
-        <h2> Experimental Design </h2>
-
         <form name = "variables" id="exp_design_form" action = "{{ url_for('create_report') }}" method = "POST">
+            <h2> Experimental Design </h2>
             <p>Please input the following details of your experiment: dependent and independent variable and the significance level</p>
             <label for="significance"> Significance Level: p <  </label>
             <input id="significance" name = "significance" type="number" value="0.05" min="0.001" max="1.0" step="0.001">
             <br>
-            <label for= "iv"> Independent Variable: <label>
+            <label for= "iv"> Independent Variable: </label>
             <input type="text" name="iv"/>
-            
-            <label for="dv">Dependent Variable: <label>
+            <br>
+            <label for="dv">Dependent Variable: </label>
             <input type="text" name="dv"/>
-
+            <br>
             <input class="btn btn-outline-info" type="submit" value = "Upload"/>
 
         </form>
+
+        <form id = "delete_form" action = "{{ url_for('del_file') }}" method="POST">
+            <h2> Data Deletion</h2>
+            <p> The current file you are using for analysis: <br><strong>{{data_file}}</strong></p>
+            <input class="btn btn-outline-danger" type="submit" value="Remove Current File">
+        </form>
+
 
     </div>
     

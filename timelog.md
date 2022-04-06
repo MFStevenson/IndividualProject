@@ -229,3 +229,13 @@
 
 * *1 hour* implementing feedback, changing styling
 * *2 hours* writing dissertation
+
+### 5 April
+
+* *3 hours* Writing dissertation
+
+### 6 April
+
+* *2 hours* polishing code, adding final functionality from evaluations
+* 0.5 hours* working on presentation slides for video
+* *2 hours* Writing dissertation

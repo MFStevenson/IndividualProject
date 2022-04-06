@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash
 from flask.helpers import url_for
+from markupsafe import Markup
 from werkzeug.utils import redirect, secure_filename
 import os
 
@@ -19,13 +20,16 @@ exp_design = {'data_file': None, "significance": None, 'iv': None, 'dv': None}
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if exp_design['data_file'] is None:
+        return render_template('index.html', data_file = "No file, please choose a file to upload")
+    return render_template('index.html', data_file = exp_design['data_file'])
 
 @app.route("/upload", methods = ['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['experimental_data']
         if file.filename == '':
+            flash('No file uploaded, please choose a file to upload')
             return redirect(url_for('index'))
 
         filename = secure_filename(file.filename)
@@ -34,8 +38,20 @@ def upload():
         flash('File upload successful')
         return redirect(url_for('index'))
     else:
-        flash('File not uploaded. Please try again', 'error')
+        flash('File not uploaded. Please try again')
         return redirect(url_for('index'))
+
+@app.route("/del_file", methods = ["GET", "POST"])
+def del_file():
+    if exp_design['data_file'] is None:
+        flash('No file to delete')
+        return redirect(url_for('index'))
+    filename = exp_design['data_file']
+    exp_design['data_file'] = None
+    cur_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    os.remove(cur_file)
+    flash('File deleted')
+    return redirect(url_for('index'))
 
 def design():
     d = read_exp_design()
@@ -58,11 +74,13 @@ def run_stats():
 def create_report():
     if request.method == "POST":
         if exp_design['data_file'] is None:
-            flash('Error: no experimental design, please upload data and input variables')
+            flash(Markup('<strong>Error:</strong> no experimental data, please upload file'))
             return redirect(url_for('index'))
+
         design()
+
         if len(exp_design['iv']) == 0 or len(exp_design['dv']) == 0:
-            flash('Error: Variables missing, please input variables and try again')
+            flash(Markup('<strong>Error:</strong> Variables missing, please input variables and try again'))
             return redirect(url_for('index'))
             
         return render_template('create-report.html')
