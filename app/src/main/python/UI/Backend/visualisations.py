@@ -8,39 +8,14 @@ from Backend.data_processing import *
 
 sns.set_style("white")
 
-wd = "/Users/miafulustevenson/Documents/CurrentUni/Fourth Year/CS/Project/IndividualProject/app/src/main/python/UI/media/"
 def scatter_plt(dat, x, y):
-    sns.scatterplot(data = dat, x = x, y = y)
-    img = io.BytesIO()
-    plt.savefig(img, format = 'png')
-    plt.close()
-    img.seek(0)
-    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
-    return plt_url
+    return sns.scatterplot(data = dat, x = x, y = y)
 
 def regression_plt(dat, x, y):
-    sns.regplot(x = x, y = y, data = dat)
-    img = io.BytesIO()
-    plt.savefig(img, format = 'png')
-    plt.close()
-    img.seek(0)
-    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
-    return plt_url
+    return sns.regplot(x = x, y = y, data = dat)
 
 def box_plt(dat,x, y):
-    sns.boxplot(x = x, y = y, data = dat)
-    img = io.BytesIO()
-    plt.savefig(img, format = 'png')
-    plt.close()
-    img.seek(0)
-    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
-    return plt_url
+    return sns.boxplot(x = x, y = y, data = dat)
 
 def violin_plt(dat, x, y):
-    sns.violinplot(x = x, y = y, data = dat)
-    img = io.BytesIO()
-    plt.savefig(img, format = 'png')
-    plt.close()
-    img.seek(0)
-    plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
-    return plt_url
+    return sns.violinplot(x = x, y = y, data = dat)

@@ -9,15 +9,14 @@
     <hr>
 
     <div id = "final_stats">
+        <!-- code modified from https://stackoverflow.com/questions/14652325/python-dictionary-in-to-html-table -->
+        <!-- Answer with 49 votes as of date written, code modified related to displaying dictionary -->
         {% for key, value in stats.items() %}
             <p> Your {{key}} statistics: </p>
             {% if value is none %}
                 <p> No {{key}} tests selected </p>
             {% else %}
-                <tr>
-                    <td> {{ value | safe }} </td>
-                    <br>
-                </tr>
+                    {{ value | safe }} 
             {% endif %}
         {% endfor %}
 

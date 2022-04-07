@@ -1,6 +1,6 @@
 # Timelog
 
-* Statistical Analysis, Evaluation and Visualisation of Multi-System IR Experimentation
+* Statistical Analysis, Evaluation and Visualisation of Experimental Data
 * Mia Fulu Stevenson
 * 2382850s
 * Dr Graham McDonald
@@ -239,3 +239,9 @@
 * *2 hours* polishing code, adding final functionality from evaluations
 * 0.5 hours* working on presentation slides for video
 * *2 hours* Writing dissertation
+
+### 7 April
+
+* *2 hours* testing code
+* *1 hour* presentation slides and video*
+* *7 hours* writing dissertation

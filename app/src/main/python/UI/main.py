@@ -24,12 +24,12 @@ def index():
         return render_template('index.html', data_file = "No file, please choose a file to upload")
     return render_template('index.html', data_file = exp_design['data_file'])
 
-@app.route("/upload", methods = ['GET', 'POST'])
+@app.route("/upload", methods = ['POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['experimental_data']
         if file.filename == '':
-            flash('No file uploaded, please choose a file to upload')
+            flash(Markup('<strong> Error:</strong> No file uploaded selected, please choose a file to upload'))
             return redirect(url_for('index'))
 
         filename = secure_filename(file.filename)
@@ -41,11 +41,14 @@ def upload():
         flash('File not uploaded. Please try again')
         return redirect(url_for('index'))
 
-@app.route("/del_file", methods = ["GET", "POST"])
+@app.route("/del_file", methods = ["POST"])
 def del_file():
+    # check if there is actually a file to delete, if there is no file just return index, 
+    # ensures that pressing this button will have no action if pressed by accident
     if exp_design['data_file'] is None:
         flash('No file to delete')
         return redirect(url_for('index'))
+    # find file and delete, also need to notify the user of this happening
     filename = exp_design['data_file']
     exp_design['data_file'] = None
     cur_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -60,8 +63,9 @@ def design():
     exp_design['dv'] = d['dv'].lower().replace(" ", "")
 
 def run_stats():
-    # need to get this from previous function
-    result= run_analysis(exp_design)
+    # generates the report, need to run the analysis to get the stats and visualisation
+    # also get the p-val from inferential stats to compare against the level given by user
+    result = run_analysis(exp_design)
     p_val = get_p()
     if p_val < exp_design["significance"]:
         s = True
@@ -72,6 +76,7 @@ def run_stats():
 
 @app.route('/create_report', methods = ["GET", "POST"])
 def create_report():
+    # checking that experimental data exists, first we check for file, if no file then error given
     if request.method == "POST":
         if exp_design['data_file'] is None:
             flash(Markup('<strong>Error:</strong> no experimental data, please upload file'))
@@ -79,6 +84,7 @@ def create_report():
 
         design()
 
+        # check that experimental design exists, if either iv or dv not given then error thrown
         if len(exp_design['iv']) == 0 or len(exp_design['dv']) == 0:
             flash(Markup('<strong>Error:</strong> Variables missing, please input variables and try again'))
             return redirect(url_for('index'))
@@ -93,6 +99,7 @@ def report():
         res = run_stats()
         return render_template('report.html', stats=res['result'], vis = res["vis"], significant = res['s'])
     else:
+        # if no report is present, just send empty values
         return render_template('report.html', stats = {}, vis = None, significant = None)
 
 

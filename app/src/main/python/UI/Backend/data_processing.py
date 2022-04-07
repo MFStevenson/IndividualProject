@@ -38,20 +38,6 @@ def test_data(dat, iv, dv):
 
     return test_dat
 
-def multi_test_data(dat, ivs, dv):
-    # function will take in a list of ivs and a dv and then filter data according to this
-    # length of this list must be at least 2 and can vary in length
-    # if length of ivs list is not >=2 then throw error - wrong test selected?
-    test_dat = 0
-
-    if len(ivs) < 2:
-        flash("wrong type of test selected")
-        return redirect(url_for('create_report'))
-
-    # filter data, need to make sure all ivs are filtered on
-    test_data = dat.filter(['iv', 'dv'], axis = 1)
-    return test_dat
-
 def run_analysis(exp_design):
 
     current_dat = exp_design['data_file']
@@ -60,11 +46,11 @@ def run_analysis(exp_design):
     dat.columns = dat.columns.str.replace(" ", "")
     ivs = exp_design['iv']
     dvs = exp_design['dv']
-    exp_dat = test_data(dat,ivs, dvs)
+    exp_dat = test_data(dat, ivs, dvs)
 
-
+    # dictionaries with tests available
     descriptives_stats_tests = {"mean_sd": mean_sd, }
-    inferential_stats_tests = {"regression": regression, "students_t_test": students_t_test}
+    inferential_stats_tests = {"regression": regression, "students_t_test": students_t_test,}
     visualisations = {"scatter_plt": scatter_plt, "regression_plt": regression_plt,}
     metrics = {"precision": precision,}
 
@@ -78,31 +64,35 @@ def run_analysis(exp_design):
     results = {'descriptive': None, "inferential": None}
     vis = None
 
-    for t in descriptives_stats_tests:
-        if t in descriptives_stats_tests.keys():
-            if finalDesc == t:
-                statistics['d'] = descriptives_stats_tests[t](exp_dat)
-                results['descriptive'] = statistics['d'].to_html()
+    # compare user input to available tests, if test exists then run
+    # update the results dict to hold the results of the tests as html tables
+    if finalDesc in descriptives_stats_tests.keys():
+        statistics['d'] = descriptives_stats_tests[finalDesc](exp_dat)
+        results['descriptive'] = statistics['d'].to_html()
 
-    for t in inferential_stats_tests:
-        if t in inferential_stats_tests.keys():
-            if finalInf == t:
-                statistics['i'] = inferential_stats_tests[t](exp_dat)
-                results['inferential'] = statistics['i'].to_html()
+    if finalInf in inferential_stats_tests.keys():
+        statistics['i'] = inferential_stats_tests[finalInf](exp_dat)
+        results['inferential'] = statistics['i'].to_html()
     
-    for t in metrics:
-        if t in metrics.keys():
-            if finalMetric == t:
-                statistics['i'] = metrics[t](exp_dat)
-                results['inferential'] = statistics['i'].to_html()
+    if finalMetric in metrics.keys():
+        statistics['i'] = metrics[finalMetric](exp_dat)
+        results['inferential'] = statistics['i'].to_html()
     
-    for v in visualisations:
-        if v in visualisations.keys():
-            if finalVis == v:
-                vis = visualisations[v](exp_dat, ivs, dvs)
+    if finalVis in visualisations.keys():
+        visualisations[finalVis](exp_dat, ivs, dvs)
+        # code to generate url for visualisation modified from: 
+        # https://stackoverflow.com/questions/34492197/how-to-render-and-return-plot-to-view-in-flask
+        # modified code shown in answer with 8 votes at time of writing 
+        # included that relating to saving the plot, we produce the visualisation in 
+        # visualisations.py and save this result
+        img = io.BytesIO()
+        plt.savefig(img, format = 'png')
+        plt.close()
+        img.seek(0)
+        plt_url = base64.b64encode(img.getvalue()).decode('utf-8')
                 
-        analysis = {"vis": vis, "stats": results}
-    # also need to return vis
+        analysis = {"vis": plt_url, "stats": results}
+
     return analysis
 
 def get_p():

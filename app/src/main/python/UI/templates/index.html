@@ -8,9 +8,12 @@
 {% block main %}
     <h1>Statistical Analysis </h1>
     <hr>
-    <p>This application allows users to upload experimental data and perform statistical analysis on it.
+
+    <p class="info_text">This application allows you to upload experimental data and perform statistical analysis on it.
         You will chose which tests you would like to run and a report will be generated with the 
-        results of these tests
+        results of these tests.  To start analysing, please upload your experimental data and design.  Once you have 
+        finished your current analysis you can either continue with it or choose a delete the current file and choose a
+        new one to perform analysis on.
     </p>
 
     <div id="home">
@@ -48,7 +51,6 @@
             <p> The current file you are using for analysis: <br><strong>{{data_file}}</strong></p>
             <input class="btn btn-outline-danger" type="submit" value="Remove Current File">
         </form>
-
 
     </div>
     
