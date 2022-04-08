@@ -21,15 +21,17 @@ exp_design = {'data_file': None, "significance": None, 'iv': None, 'dv': None}
 @app.route('/', methods = ['GET', 'POST'])
 def index():
     if exp_design['data_file'] is None:
+        # default value for no file uploaded
         return render_template('index.html', data_file = "No file, please choose a file to upload")
     return render_template('index.html', data_file = exp_design['data_file'])
 
+# file operations, check that file is selected before carrying out action of upload or deletion
 @app.route("/upload", methods = ['POST'])
 def upload():
     if request.method == 'POST':
         file = request.files['experimental_data']
         if file.filename == '':
-            flash(Markup('<strong> Error:</strong> No file uploaded selected, please choose a file to upload'))
+            flash(Markup('<strong> Error:</strong> No file selected, please choose a file to upload'))
             return redirect(url_for('index'))
 
         filename = secure_filename(file.filename)
@@ -79,7 +81,7 @@ def create_report():
     # checking that experimental data exists, first we check for file, if no file then error given
     if request.method == "POST":
         if exp_design['data_file'] is None:
-            flash(Markup('<strong>Error:</strong> no experimental data, please upload file'))
+            flash(Markup('<strong>Error:</strong> No experimental data, please upload file'))
             return redirect(url_for('index'))
 
         design()
@@ -93,6 +95,7 @@ def create_report():
     else:
         return render_template('create-report.html')
 
+# generate final report
 @app.route('/report', methods = ['GET', 'POST'])
 def report():
     if request.method == "POST":

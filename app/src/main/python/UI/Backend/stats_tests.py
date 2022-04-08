@@ -4,6 +4,8 @@ from sklearn import metrics
 
 from Backend.data_processing import *
 
+# available stats tests
+
 def mean_sd(test_dat):
     descriptive_labels = ['Mean', 'Standard Deviation']
     mean = pd.DataFrame.mean(test_dat).to_frame().T

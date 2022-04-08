@@ -1,6 +1,8 @@
 # IndividualProject
 Level 4 Computer Science Project: Statistical Analysis, Evaluation and Visualisation of Experimental Data
 
+Github Repository: https://github.com/MFStevenson/IndividualProject
+
 This project is a web app that allows users to upload data and perform analysis on it.
 
 The project depends upon flask being installed, as well as a number of python libraries including: scipy, scikit-learn, pandas, seaborn.

@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 from Backend.data_processing import *
 
+# available visialisations
 sns.set_style("white")
 
 def scatter_plt(dat, x, y):

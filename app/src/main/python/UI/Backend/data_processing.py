@@ -1,8 +1,7 @@
 # imports
-from flask import flash
 import pandas as pd
 import os.path
-from flask import request, redirect, url_for
+from flask import request
 
 from Backend.stats_tests import *
 from Backend.visualisations import *
@@ -23,8 +22,6 @@ def read_test_data(data_file):
 def read_exp_design():
 
     significance = request.form.get("significance")
-
-    # need to create these, and look at implementing radio buttons
     dvs = request.form.get("dv")
     ivs = request.form.get("iv")
 
@@ -95,6 +92,7 @@ def run_analysis(exp_design):
 
     return analysis
 
+# get p val from statistic to check if test is significant
 def get_p():
     p = statistics['i']
     if p is None:
