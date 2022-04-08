@@ -11,7 +11,6 @@
     <h1>Create Report </h1>
     <hr>
 
-<!-- <script src="{{ url_for('static', filename = 'available_functions.js') }}"></script> -->
 <p class="info_text"> Use this page to create your report.  Click on the checkboxes of the tests and visualisations you would like to run and press generate when you are ready to go.</p>
 
     <form name = "reportData" action = "{{ url_for('report')}}" id ="exp_tests_form" method="POST">
@@ -23,10 +22,6 @@
             <label for = "mean_sd">Mean and Standard Deviation</label><br></br>
         </fieldset>
 
-
-        <!-- some sort of for loop to go through the descriptive
-        stats available in dictionary from back end, attached to radio button
-        want to return the text of their choices to backend to then run specified tests -->
         <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #BF40BF">analytics</span> Visualisations </legend>
 
@@ -43,8 +38,6 @@
             <label for = "violin_plt"> Violin Plot </label><br></br>
         </fieldset>
 
-
-        <!-- Same idea for loop -->
         <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #0509df">data_exploration</span> Inferential Statistics </legend>
 
@@ -54,8 +47,6 @@
             <input type = "checkbox" id = "students_t_test" name = "inf" value = "students_t_test">
             <label for = "regression">Students t-test</label><br></br>
         </fieldset>
- 
-        <!-- Same idea for loop -->
 
         <fieldset>
             <legend> <span class = "material-icons md-48" style = "color: #ee850e">straighten</span> Metrics </legend>
